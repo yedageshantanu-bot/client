@@ -11,6 +11,9 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "chrome-lh-profile/**",
+    ".lighthouse-profile/**",
+    "responsive-checks/**",
     "next-env.d.ts",
   ]),
 ]);

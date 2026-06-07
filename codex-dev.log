@@ -1,0 +1,47 @@
+
+> client@0.1.0 dev
+> next dev --webpack
+
+▲ Next.js 16.2.6 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.10:3000
+- Environments: .env.local
+✓ Ready in 2.6s
+
+○ Compiling / ...
+ GET / 200 in 21.9s (next.js: 19.2s, application-code: 2.6s)
+ GET /collection 200 in 22.0s (next.js: 19.3s, application-code: 2.7s)
+○ Compiling /about ...
+ GET /cart 200 in 7.9s (next.js: 6.4s, application-code: 1472ms)
+ GET /about 200 in 7.9s (next.js: 7.0s, application-code: 826ms)
+ GET /checkout 200 in 8.0s (next.js: 7.1s, application-code: 833ms)
+ GET /product/p1 200 in 9.1s (next.js: 8.8s, application-code: 259ms)
+○ Compiling /account ...
+ GET /account 200 in 24.7s (next.js: 23.7s, application-code: 991ms)
+ GET /contact 200 in 24.7s (next.js: 23.7s, application-code: 997ms)
+ GET /admin 200 in 24.7s (next.js: 23.7s, application-code: 1004ms)
+ GET / 200 in 2.5s (next.js: 1768ms, application-code: 727ms)
+ GET / 200 in 2.6s (next.js: 1862ms, application-code: 730ms)
+ GET / 200 in 815ms (next.js: 22ms, application-code: 793ms)
+○ Compiling /collection ...
+ GET /collection 200 in 4.4s (next.js: 4.3s, application-code: 171ms)
+ GET / 200 in 519ms (next.js: 31ms, application-code: 488ms)
+ GET / 200 in 363ms (next.js: 5ms, application-code: 359ms)
+ GET / 200 in 297ms (next.js: 5ms, application-code: 292ms)
+ GET / 200 in 195ms (next.js: 5ms, application-code: 190ms)
+ GET / 200 in 417ms (next.js: 72ms, application-code: 345ms)
+ GET / 200 in 662ms (next.js: 48ms, application-code: 614ms)
+ GET / 200 in 506ms (next.js: 35ms, application-code: 471ms)
+ GET / 200 in 2.2s (next.js: 149ms, application-code: 2.1s)
+○ Compiling /cart ...
+ GET /cart 200 in 17.5s (next.js: 17.3s, application-code: 249ms)
+ GET / 200 in 3.8s (next.js: 977ms, application-code: 2.8s)
+ GET / 200 in 384ms (next.js: 8ms, application-code: 376ms)
+ GET / 200 in 382ms (next.js: 8ms, application-code: 374ms)
+ GET / 200 in 368ms (next.js: 8ms, application-code: 360ms)
+○ Compiling /collection ...
+ GET /collection 200 in 5.9s (next.js: 5.5s, application-code: 453ms)
+ GET / 200 in 399ms (next.js: 30ms, application-code: 369ms)
+ GET /collection 200 in 218ms (next.js: 11ms, application-code: 207ms)
+ GET /collection 200 in 111ms (next.js: 6ms, application-code: 106ms)
+ GET / 200 in 648ms (next.js: 9ms, application-code: 639ms)
