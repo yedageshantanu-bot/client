@@ -10,12 +10,16 @@ export function Modal({
   title,
   children,
   className,
+  contentClassName,
+  hideHeader = false,
 }: {
   open: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
   className?: string;
+  contentClassName?: string;
+  hideHeader?: boolean;
 }) {
   return (
     <AnimatePresence>
@@ -41,19 +45,21 @@ export function Modal({
               className,
             )}
           >
-            <div className="flex shrink-0 items-start justify-between gap-4 p-6 sm:p-8 border-b border-brand-border bg-beige-soft/10">
-              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl leading-none">
-                {title}
-              </h2>
-              <button
-                aria-label="Close modal"
-                className="rounded-full border border-brand-border p-2 text-brand-muted transition hover:border-ink hover:text-ink hover:bg-beige-soft"
-                onClick={onClose}
-              >
-                <X size={18} />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar">
+            {!hideHeader && (
+              <div className="flex shrink-0 items-start justify-between gap-4 p-6 sm:p-8 border-b border-brand-border bg-beige-soft/10">
+                <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl leading-none">
+                  {title}
+                </h2>
+                <button
+                  aria-label="Close modal"
+                  className="rounded-full border border-brand-border p-2 text-brand-muted transition hover:border-ink hover:text-ink hover:bg-beige-soft"
+                  onClick={onClose}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            )}
+            <div className={cn("flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar", contentClassName)}>
               {children}
             </div>
           </motion.div>

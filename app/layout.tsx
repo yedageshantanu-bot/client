@@ -85,42 +85,42 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {/* Strip browser-extension-injected attributes (bis_skin_checked,
-            data-darkreader-mode, data-extension-id, etc.) before React
-            hydrates to prevent hydration mismatch warnings. Runs synchronously
-            in <head> equivalent before any React code loads. */}
+            data-darkreader-mode, data-extension-id, etc.) dynamically
+            using MutationObserver before React hydrates. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{
               var attrs=['bis_skin_checked','data-darkreader-mode','data-darkreader-scheme','data-extension-id','data-gr-ext-installed','data-new-gr-c-s-check-loaded','data-grammarly-shadow-root','data-lt-installed'];
-              var s=document.querySelectorAll('*');
-              for(var i=0;i<s.length;i++){
-                var el=s[i];
-                for(var j=0;j<attrs.length;j++){
-                  if(el.hasAttribute && el.hasAttribute(attrs[j])){
-                    el.removeAttribute(attrs[j]);
+              var clean=function(node){
+                if(!node||node.nodeType!==1)return;
+                for(var i=0;i<attrs.length;i++){
+                  if(node.hasAttribute(attrs[i]))node.removeAttribute(attrs[i]);
+                }
+                var children=node.querySelectorAll('*');
+                for(var i=0;i<children.length;i++){
+                  for(var j=0;j<attrs.length;j++){
+                    if(children[i].hasAttribute(attrs[j]))children[i].removeAttribute(attrs[j]);
                   }
                 }
-              }
+              };
+              clean(document.documentElement);
+              var observer=new MutationObserver(function(mutations){
+                for(var i=0;i<mutations.length;i++){
+                  var m=mutations[i];
+                  if(m.type==='attributes'){
+                    if(attrs.indexOf(m.attributeName)!==-1)m.target.removeAttribute(m.attributeName);
+                  }else if(m.type==='childList'){
+                    for(var j=0;j<m.addedNodes.length;j++)clean(m.addedNodes[j]);
+                  }
+                }
+              });
+              observer.observe(document.documentElement,{
+                attributes:true,
+                childList:true,
+                subtree:true,
+                attributeFilter:attrs
+              });
             }catch(e){}})();`,
-          }}
-        />
-        {/* Second pass: catch any extension attributes added after the
-            initial script runs but before React commits. Runs again at
-            DOMContentLoaded for safety. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.addEventListener('DOMContentLoaded',function(){try{
-              var attrs=['bis_skin_checked','data-darkreader-mode','data-darkreader-scheme','data-extension-id','data-gr-ext-installed','data-new-gr-c-s-check-loaded','data-grammarly-shadow-root','data-lt-installed'];
-              var s=document.querySelectorAll('*');
-              for(var i=0;i<s.length;i++){
-                var el=s[i];
-                for(var j=0;j<attrs.length;j++){
-                  if(el.hasAttribute && el.hasAttribute(attrs[j])){
-                    el.removeAttribute(attrs[j]);
-                  }
-                }
-              }
-            }catch(e){}});`,
           }}
         />
         <Providers>
