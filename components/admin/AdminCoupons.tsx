@@ -39,7 +39,7 @@ const blankCoupon: CouponFormState = {
 
 type Tab = "all" | "active" | "paused" | "expired";
 
-// Per-tab distinct color treatment — neutral slate variants only
+// Unified active state styles - solid dark navy/black with white text
 const couponTabStyles: Record<Tab, { active: string; count: string }> = {
   all: {
     active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
@@ -50,12 +50,12 @@ const couponTabStyles: Record<Tab, { active: string; count: string }> = {
     count: "bg-white/20 text-white",
   },
   paused: {
-    active: "bg-white text-[#0f172a] ring-1 ring-[#0f172a]",
-    count: "bg-[#0f172a] text-white",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   expired: {
-    active: "bg-[#f1f5f9] text-[#475569] ring-1 ring-[#e2e8f0]",
-    count: "bg-[#cbd5e1] text-[#475569]",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
 };
 

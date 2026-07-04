@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   AlertTriangle,
   Boxes,
@@ -71,6 +71,12 @@ export function AdminProducts() {
   const [fabric, setFabric] = useState("All");
   const [stockFilter, setStockFilter] = useState(0);
   const [sort, setSort] = useState<SortKey>("newest");
+
+  useEffect(() => {
+    if (showForm || editing) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [showForm, editing]);
 
   const openNewProductForm = () => {
     setEditing(null);
@@ -206,6 +212,18 @@ export function AdminProducts() {
         </div>
       </div>
 
+      {/* Form */}
+      {(showForm || editing) && (
+        <ProductForm
+          product={editing}
+          onCancel={() => {
+            setEditing(null);
+            setShowForm(false);
+          }}
+          onSubmit={saveProduct}
+        />
+      )}
+
       {/* Quick stats */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <StatPill
@@ -303,18 +321,6 @@ export function AdminProducts() {
         </div>
       </div>
 
-      {/* Form */}
-      {(showForm || editing) && (
-        <ProductForm
-          product={editing}
-          onCancel={() => {
-            setEditing(null);
-            setShowForm(false);
-          }}
-          onSubmit={saveProduct}
-        />
-      )}
-
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-[#e2e8f0] bg-white py-16 text-center">
@@ -361,16 +367,16 @@ export function AdminProducts() {
                   )}
 
                   <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-                    <span className="rounded-full bg-white/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#0f172a] backdrop-blur">
+                    <span className="rounded-full bg-white/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[var(--color-maroon)] backdrop-blur">
                       {product.category}
                     </span>
                     {product.featured && (
-                      <span className="rounded-full bg-[#0f172a] px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#0f172a] backdrop-blur">
+                      <span className="rounded-full bg-[var(--color-maroon)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur">
                         Featured
                       </span>
                     )}
                     {product.isActive === false && (
-                      <span className="rounded-full bg-[#0f172a]/80 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                      <span className="rounded-full bg-neutral-500 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur">
                         Hidden
                       </span>
                     )}
@@ -454,7 +460,7 @@ export function AdminProducts() {
 
                   <div className="mt-3 flex items-center justify-between border-t border-[#e2e8f0]/40 pt-3 text-[10px]">
                     <span className="text-[#64748b]">
-                      ⭐ {(product.rating || 0).toFixed(1)} ({product.reviews || 0})
+                      ⭐ {(product.rating || 0).toFixed(1)} ({typeof product.reviews === "number" ? product.reviews : Array.isArray(product.reviews) ? product.reviews.length : 0})
                     </span>
                     <div className="flex flex-wrap items-center gap-1">
                       {product.featured && (

@@ -37,34 +37,34 @@ const tabs: Tab[] = [
   "Cancelled",
 ];
 
-// Each tab gets a distinct accent — light bg with colored text + colored count
+// Each tab gets a unified solid dark navy/black active style with a translucent badge
 const tabStyles: Record<string, { active: string; count: string }> = {
   All: {
     active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
     count: "bg-white/20 text-white",
   },
   Pending: {
-    active: "bg-amber-50 text-amber-900 ring-1 ring-amber-200",
-    count: "bg-amber-200 text-amber-900",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   Packed: {
-    active: "bg-blue-50 text-blue-900 ring-1 ring-blue-200",
-    count: "bg-blue-200 text-blue-900",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   Shipped: {
-    active: "bg-indigo-50 text-indigo-900 ring-1 ring-indigo-200",
-    count: "bg-indigo-200 text-indigo-900",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   Delivered: {
-    active: "bg-emerald-50 text-emerald-900 ring-1 ring-emerald-200",
-    count: "bg-emerald-200 text-emerald-900",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   Cancelled: {
-    active: "bg-rose-50 text-rose-900 ring-1 ring-rose-200",
-    count: "bg-rose-200 text-rose-900",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
+    count: "bg-white/20 text-white",
   },
   default: {
-    active: "bg-[#0f172a] text-white",
+    active: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
     count: "bg-white/20 text-white",
   },
 };
@@ -145,7 +145,7 @@ export function OrderTable() {
   };
 
   const advanceStatus = (order: Order) => {
-    const order1: Tab[] = ["Pending", "Packed", "Shipped", "Delivered"];
+    const order1: Order["deliveryStatus"][] = ["Pending", "Packed", "Shipped", "Delivered"];
     const currentIndex = order1.indexOf(order.deliveryStatus);
     if (currentIndex === -1 || currentIndex === order1.length - 1) return;
     const nextStatus = order1[currentIndex + 1];

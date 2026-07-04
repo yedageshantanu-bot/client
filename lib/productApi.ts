@@ -1,6 +1,6 @@
 import type { MediaAsset, Product } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://vastraaura-backend.loca.lt/api";
 const UPLOAD_API_BASE = API_URL.replace(/\/api$/, "");
 
 const toFormValue = (value: unknown) =>

@@ -11,6 +11,7 @@ import {
   Plus,
   Sparkles,
   Trash2,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import type { MediaAsset, Product, ProductVariant } from "@/lib/types";
@@ -431,7 +432,18 @@ export function ProductForm({
       onSubmit={submit}
       className="space-y-6 rounded-[24px] border border-[#e2e8f0] bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.05)]"
     >
-      <div className="flex flex-col gap-4 rounded-[20px] bg-[linear-gradient(135deg,#1e1b16_0%,#2a2217_55%,#3f3321_100%)] p-6 text-white md:flex-row md:items-end md:justify-between">
+      <div className="relative flex flex-col gap-4 rounded-[20px] bg-[linear-gradient(135deg,#1e1b16_0%,#2a2217_55%,#3f3321_100%)] p-6 text-white md:flex-row md:items-end md:justify-between">
+        {onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 hover:text-white cursor-pointer"
+            aria-label="Close form"
+            title="Cancel and close"
+          >
+            <X size={16} />
+          </button>
+        )}
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
             <Sparkles size={14} />

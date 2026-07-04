@@ -304,7 +304,7 @@ export function AdminDashboard() {
               </span>
             </div>
           </div>
-          <div className="mt-4 h-72">
+          <div className="relative mt-4 h-72 w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockAdminStats.monthlyRevenue}>
                 <defs>
@@ -379,7 +379,7 @@ export function AdminDashboard() {
           </h2>
           {revenueByCategory.length > 0 ? (
             <>
-              <div className="mt-4 h-56">
+              <div className="relative mt-4 h-56 w-full min-w-0">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -398,7 +398,7 @@ export function AdminDashboard() {
                       ))}
                     </Pie>
                     <Tooltip
-                      formatter={(value: number) => formatPrice(value)}
+                      formatter={(value: any) => formatPrice(Number(value || 0))}
                       contentStyle={{
                         borderRadius: 12,
                         border: "1px solid #e9dccb",
@@ -449,7 +449,7 @@ export function AdminDashboard() {
           <h2 className="font-display text-2xl font-semibold text-[#0f172a]">
             Orders by status
           </h2>
-          <div className="mt-4 h-64">
+          <div className="relative mt-4 h-64 w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={[

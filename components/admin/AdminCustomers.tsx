@@ -17,14 +17,20 @@ import { cn, formatPrice, getInitials } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
 import type { Customer, Order } from "@/lib/types";
-
 type Tier = "all" | "vip" | "regular" | "new";
+
+type EnrichedCustomer = Omit<Customer, "lastOrder"> & {
+  customerOrders: Order[];
+  lastOrder: Order | undefined;
+  cities: string[];
+  tierInfo: { label: string; tone: "default" | "light" };
+};
 
 export function AdminCustomers() {
   const { customers, orders } = useStore();
   const [search, setSearch] = useState("");
   const [tier, setTier] = useState<Tier>("all");
-  const [viewing, setViewing] = useState<Customer | null>(null);
+  const [viewing, setViewing] = useState<EnrichedCustomer | null>(null);
 
   const tierMeta = (spending: number) => {
     if (spending >= 20000) return { label: "VIP", tone: "default" as const };
@@ -186,21 +192,15 @@ export function AdminCustomers() {
               { id: "new", label: "New", tone: "blue" },
             ] as const
           ).map((option) => {
-            const styleMap: Record<string, string> = {
-              all: "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20",
-              amber: "bg-amber-50 text-amber-900 ring-1 ring-amber-200",
-              emerald: "bg-emerald-50 text-emerald-900 ring-1 ring-emerald-200",
-              blue: "bg-blue-50 text-blue-900 ring-1 ring-blue-200",
-            };
             return (
               <button
                 key={option.id}
                 type="button"
                 onClick={() => setTier(option.id)}
                 className={cn(
-                  "h-11 rounded-xl px-4 text-[10px] font-bold uppercase tracking-widest transition duration-300",
+                  "h-11 rounded-xl px-4 text-[10px] font-bold uppercase tracking-widest transition duration-300 cursor-pointer",
                   tier === option.id
-                    ? styleMap[option.tone]
+                    ? "bg-[#0f172a] text-white shadow-md shadow-[#0f172a]/20"
                     : "border border-[#e2e8f0] bg-white text-[#64748b] hover:bg-[#f8fafc] hover:text-[#0f172a]",
                 )}
               >
@@ -321,7 +321,7 @@ function CustomerDetail({
   orders,
   onClose,
 }: {
-  customer: Customer;
+  customer: EnrichedCustomer;
   orders: Order[];
   onClose: () => void;
 }) {

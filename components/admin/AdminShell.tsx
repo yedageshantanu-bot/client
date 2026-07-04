@@ -281,13 +281,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
               <Link
                 href="/admin"
-                className="flex items-center gap-2 lg:hidden"
+                className="flex items-center gap-1.5 lg:hidden"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#0f172a] text-white">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#0f172a] text-white">
                   <Sparkles className="h-4 w-4" />
                 </span>
-                <span className="text-sm font-bold text-[#0f172a]">
+                <span className="text-sm font-bold text-[#0f172a] hidden sm:inline">
                   {brandName}
+                </span>
+                <span className="text-sm font-bold text-[#0f172a] sm:hidden">
+                  Alaira
                 </span>
               </Link>
 
@@ -323,7 +326,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                     onClick={() => setQuickCreateOpen((v) => !v)}
                     className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-[#0f172a] px-3 text-[11px] font-semibold uppercase tracking-widest text-white transition hover:bg-[#1e293b]"
                   >
-                    <Plus size={14} /> Create
+                    <Plus size={14} />
+                    <span className="hidden sm:inline">Create</span>
                   </button>
                   {quickCreateOpen && (
                     <div className="absolute right-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl border border-[#e2e8f0] bg-white shadow-xl">
@@ -372,7 +376,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   <button
                     type="button"
                     onClick={() => setProfileOpen((v) => !v)}
-                    className="flex items-center gap-2 rounded-xl border border-[#e2e8f0] bg-white py-1 pl-1 pr-2.5 text-left transition hover:bg-[#f8fafc]"
+                    className="flex items-center gap-1.5 rounded-xl border border-[#e2e8f0] bg-white py-1 pl-1 pr-1 sm:pr-2.5 text-left transition hover:bg-[#f8fafc]"
                   >
                     <span className="grid h-7 w-7 place-items-center rounded-lg bg-[#0f172a] text-[10px] font-bold uppercase tracking-wider text-white">
                       {user ? getInitials(user.name) : "AD"}
@@ -385,7 +389,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                         Owner
                       </span>
                     </span>
-                    <ChevronDown size={13} className="text-[#64748b]" />
+                    <ChevronDown size={13} className="text-[#64748b] hidden sm:block" />
                   </button>
 
                   {profileOpen && (

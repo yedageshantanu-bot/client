@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import {
+  Cinzel,
   Cormorant_Garamond,
   Inter,
-  Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
 import { LayoutChrome } from "@/components/layout/LayoutChrome";
 import { Providers } from "@/components/layout/Providers";
 import { brandLogoPath, brandName, brandSeoDescription, brandTagline } from "@/lib/brand";
 
-const displayFont = Playfair_Display({
+const displayFont = Cinzel({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-display",
 });
 

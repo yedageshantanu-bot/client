@@ -12,11 +12,16 @@ export function Badge({
 }: {
   children: React.ReactNode;
   className?: string;
-  tone?: "default" | "light";
+  tone?: "default" | "light" | "green" | "gold" | "muted" | "red" | "maroon";
 }) {
   const tones: Record<string, string> = {
-    default: "bg-[#08142E] text-white",
+    default: "bg-[var(--color-maroon)] text-white",
     light: "bg-[#f1f5f9] text-[#475569]",
+    green: "bg-[#dcfce7] text-[#15803d]",
+    gold: "bg-[#fef9c3] text-[#a16207]",
+    muted: "bg-[#f1f5f9] text-[#475569]",
+    red: "bg-[#fee2e2] text-[#b91c1c]",
+    maroon: "bg-[var(--color-maroon)] text-white",
   };
 
   return (

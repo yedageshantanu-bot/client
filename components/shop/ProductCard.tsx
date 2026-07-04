@@ -44,12 +44,12 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
           {(product.isBestSeller || product.featured) && (
-            <span className="rounded-full bg-[#08142E] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white shadow-sm">
+            <span className="rounded-full bg-[var(--color-maroon)] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white shadow-sm">
               Featured
             </span>
           )}
           {Boolean(product.discount) && (
-            <span className="w-max rounded-full bg-[#08142E] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white shadow-sm">
+            <span className="w-max rounded-full bg-[var(--color-maroon)] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white shadow-sm">
               {product.discount}% Off
             </span>
           )}

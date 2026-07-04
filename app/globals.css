@@ -14,7 +14,7 @@
   --color-dark-red: #3b1117;
   --color-oxblood: #26070b;
   --color-charcoal: #2f2926;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Cinzel", "Playfair Display", Georgia, "Times New Roman", serif;
   --font-accent: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Inter", Arial, Helvetica, sans-serif;
   --font-button: "Inter", Arial, Helvetica, sans-serif;
@@ -627,6 +627,11 @@ video {
 }
 
 /* ---------- Admin console: unified design system ---------- */
+.admin-shell,
+.admin-shell * {
+  font-family: var(--font-body) !important;
+}
+
 .admin-shell {
   /* Single source of truth — luxury fashion SaaS palette */
   --primary: #08142E;                /* deep navy — every highlight */
@@ -655,7 +660,6 @@ video {
   --sidebar-active: #08142E;          /* navy active pill */
   --sidebar-border: rgba(255, 255, 255, 0.06);
 
-  font-family: var(--font-body);
   color: var(--text);
   background: var(--bg);
 }
@@ -665,9 +669,9 @@ video {
 .admin-shell h2,
 .admin-shell h3,
 .admin-shell h4 {
-  font-family: var(--font-display);
-  letter-spacing: -0.018em;
-  color: var(--admin-ink);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .admin-shell .premium-gradient {
