@@ -238,7 +238,29 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
               .filter(Boolean)
           : [];
 
-        setWishlist(wishlistIds as string[]);
+        // Guest wishlist items merging on authentication
+        const guestWishlistKey = "vastraaura_wishlist:guest";
+        const guestWishlist = readLocal<string[]>(guestWishlistKey, []);
+        let finalWishlist = [...wishlistIds];
+
+        if (guestWishlist.length > 0) {
+          const newItems = guestWishlist.filter((id) => !wishlistIds.includes(id));
+          if (newItems.length > 0) {
+            finalWishlist = [...wishlistIds, ...newItems];
+            for (const productId of newItems) {
+              try {
+                await apiToggleWishlist(productId);
+              } catch (e) {
+                console.error("Failed to sync guest wishlist item to database:", productId, e);
+              }
+            }
+          }
+          if (typeof window !== "undefined") {
+            window.localStorage.removeItem(guestWishlistKey);
+          }
+        }
+
+        setWishlist(finalWishlist as string[]);
 
         if (isStrictAdmin(user)) {
           const [orderResponse, userResponse] = await Promise.all([

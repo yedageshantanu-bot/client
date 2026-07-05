@@ -45,6 +45,9 @@ export const openGoogleAuthPopup = (nextPath = "/") =>
       popup.close();
 
       if (event.data.payload?.success) {
+        if (event.data.payload.token) {
+          localStorage.setItem("vastraaura_token", event.data.payload.token);
+        }
         resolve(event.data.payload);
         return;
       }

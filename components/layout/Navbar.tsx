@@ -97,7 +97,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "group relative py-2 text-[0.68rem] font-bold tracking-[0.22em] transition duration-300 hover:-translate-y-0.5",
+                    "group relative py-2 text-[0.68rem] font-bold tracking-[0.22em] transition duration-300 hover:-translate-y-0.5 whitespace-nowrap",
                     "text-[rgba(59,42,40,0.74)] hover:text-[var(--color-maroon)]",
                     active && "text-[var(--color-maroon)]",
                   )}

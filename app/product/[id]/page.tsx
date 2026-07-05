@@ -9,7 +9,7 @@ export default async function ProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "https://vastraaura-backend.loca.lt/api";
+  const apiBase = process.env.NEXT_PUBLIC_API_URL || "https://vastraaura-backend.onrender.com/api";
 
   const fetchProduct = async (): Promise<Product | null> => {
     try {

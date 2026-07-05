@@ -83,6 +83,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await logoutUser();
     } finally {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("vastraaura_token");
+      }
       setUser(null);
       setStatus("unauthenticated");
       toast.success("Signed out");

@@ -109,16 +109,48 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const { user, status } = useAuth();
-  const storageKey = cartStorageKey(status === "authenticated" ? user : null);
+  const storageKey = cartStorageKey(user);
   const [state, dispatch] = useReducer(cartReducer, initialState);
   const [hydratedKey, setHydratedKey] = useState<string | null>(null);
 
   useEffect(() => {
     queueMicrotask(() => {
-      dispatch({ type: "HYDRATE", payload: getStoredCart(storageKey) });
-      setHydratedKey(storageKey);
+      const guestKey = "vastraaura_cart:guest";
+      const userKey = user ? `vastraaura_cart:${user._id || user.email}` : null;
+      const currentKey = userKey || guestKey;
+
+      let targetCart = getStoredCart(currentKey);
+
+      // 1. Merge Guest Cart into User Cart on Login
+      if (userKey && currentKey === userKey) {
+        const guestCart = getStoredCart(guestKey);
+        if (guestCart.items.length > 0) {
+          const mergedItems = [...targetCart.items];
+          guestCart.items.forEach((guestItem) => {
+            const existing = mergedItems.find((item) => item._id === guestItem._id);
+            if (existing) {
+              existing.quantity += guestItem.quantity;
+            } else {
+              mergedItems.push(guestItem);
+            }
+          });
+          targetCart = {
+            ...targetCart,
+            items: mergedItems,
+          };
+          window.localStorage.removeItem(guestKey);
+        }
+      }
+
+      // 2. Clear Cart on Sign Out
+      if (status === "unauthenticated" && currentKey === guestKey) {
+        targetCart = initialState;
+      }
+
+      dispatch({ type: "HYDRATE", payload: targetCart });
+      setHydratedKey(currentKey);
     });
-  }, [storageKey]);
+  }, [user, status, storageKey]);
 
   useEffect(() => {
     if (hydratedKey !== storageKey) {

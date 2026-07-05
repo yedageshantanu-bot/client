@@ -7,10 +7,12 @@ type RequestOptions = RequestInit & {
 };
 
 const requestJson = async <T>(url: string, options: RequestOptions = {}) => {
+  const token = typeof window !== "undefined" ? localStorage.getItem("vastraaura_token") : null;
   const response = await fetch(url, {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
     ...options,
@@ -193,4 +195,12 @@ export const verifyRazorpayPayment = (payload: {
   requestJson<{ success: true; order: Order }>(`${api.orders}/razorpay/verify`, {
     method: "POST",
     body: JSON.stringify(payload),
+  });
+
+export const authenticateFirebase = (idToken: string) =>
+  requestJson<{ success: true; token: string; user: User; message?: string }>(`${api.users}/auth/firebase`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${idToken}`,
+    },
   });

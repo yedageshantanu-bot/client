@@ -5,7 +5,9 @@ import { AtSign, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/Button";
-import { openGoogleAuthPopup } from "@/lib/googleAuth";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/lib/firebaseClient";
+import { authenticateFirebase } from "@/lib/authApi";
 import { cn } from "@/lib/utils";
 
 type GoogleLoginButtonProps = {
@@ -34,17 +36,32 @@ export function GoogleLoginButton({
     setLoading(true);
 
     try {
-      const result = await openGoogleAuthPopup(nextPath);
+      // 1. Authenticate with Firebase Google Sign-In Popup
+      const result = await signInWithPopup(auth, googleProvider);
+      
+      // 2. Retrieve Firebase JWT ID Token
+      const idToken = await result.user.getIdToken();
+
+      // 3. Send token to Express Backend
+      const response = await authenticateFirebase(idToken);
+
+      // 4. Save backend token to localStorage
+      if (response.token) {
+        localStorage.setItem("vastraaura_token", response.token);
+      }
+
+      // 5. Restore user session in AuthContext
       const restoredUser = await refreshSession();
 
       if (!restoredUser) {
-        throw new Error("Google sign-in completed, but the session could not be restored. Please try again.");
+        throw new Error("Sign-in completed, but session could not be established. Please try again.");
       }
 
       setShowLoginModal(false);
-      toast.success(result.message || "Signed in with Google");
+      toast.success(response.message || "Signed in with Google");
       onSuccess?.();
     } catch (error) {
+      console.error("[VastraAura] Firebase login failed:", error);
       toast.error(error instanceof Error ? error.message : "Sign-in could not be completed");
     } finally {
       setLoading(false);

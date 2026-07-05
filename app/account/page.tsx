@@ -75,7 +75,7 @@ function AccountContent() {
   }, [products, profile, wishlist]);
 
   return (
-    <div className="container-page py-10">
+    <div className="container-page pt-28 pb-10">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-dark">

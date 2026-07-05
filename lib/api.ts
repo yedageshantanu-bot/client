@@ -1,5 +1,5 @@
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://vastraaura-backend.loca.lt/api";
+  process.env.NEXT_PUBLIC_API_URL || "https://vastraaura-backend.onrender.com/api";
 
 export const api = {
   base: API_URL,

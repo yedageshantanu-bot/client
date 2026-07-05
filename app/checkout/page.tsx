@@ -146,7 +146,7 @@ function CheckoutContent() {
 
   if (successOrder) {
     return (
-      <div className="container-page py-16">
+      <div className="container-page pt-28 pb-16">
         <div className="mx-auto max-w-3xl rounded-[8px] border border-brand-border bg-white p-8 text-center shadow-sm">
           <CheckCircle2 className="mx-auto text-emerald-600" size={62} />
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-gold-dark">
@@ -224,7 +224,7 @@ function CheckoutContent() {
 
   if (items.length === 0) {
     return (
-      <div className="container-page py-20 text-center">
+      <div className="container-page pt-28 pb-20 text-center">
         <PackageCheck className="mx-auto text-gold-dark" size={54} />
         <h1 className="mt-5 font-display text-5xl font-semibold text-ink">
           Your cart is empty
