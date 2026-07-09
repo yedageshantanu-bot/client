@@ -153,3 +153,13 @@ export const submitProductReview = (id, payload) =>
 export const getMyOrders = () => 
   api.get("/orders/me").then((r) => r.data.orders || r.data);
 
+export const loginWithFirebaseToken = (idToken) => 
+  api.post("/users/auth/firebase", {}, {
+    headers: { Authorization: `Bearer ${idToken}` }
+  }).then((r) => {
+    if (r.data?.token) {
+      localStorage.setItem("alaira_token", r.data.token);
+    }
+    return r.data;
+  });
+

@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/lib/firebaseClient";
+import { loginWithFirebaseToken } from "@/lib/api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -18,49 +21,28 @@ export default function Login() {
     }
   }, [user, navigate, location]);
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     setError("");
-    const width = 500;
-    const height = 650;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-    
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
-    const popup = window.open(
-      `${backendUrl}/api/users/google`,
-      "VastraAura Google Sign In",
-      `width=${width},height=${height},left=${left},top=${top},status=no,resizable=yes,scrollbars=yes`
-    );
-
-    if (!popup) {
-      setError("Popup blocked. Please allow popups for this site.");
-      return;
-    }
-
-    const messageListener = async (event) => {
-      // Validate origin
-      if (event.origin !== backendUrl) return;
-
-      if (event.data?.type === "vastraaura:auth") {
-        const { success, token, nextPath, message } = event.data.payload || {};
-        if (success) {
-          if (token) {
-            localStorage.setItem("alaira_token", token);
-          }
-          await reloadUser();
-          toast.success("Signed in with Google successfully!");
-          
-          const from = location.state?.from || nextPath || "/";
-          navigate(from, { replace: true });
-        } else {
-          setError(message || "Google sign-in failed. Please try again.");
-          toast.error("Sign-in failed.");
-        }
-        window.removeEventListener("message", messageListener);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const idToken = await result.user.getIdToken();
+      
+      const data = await loginWithFirebaseToken(idToken);
+      if (data?.success) {
+        await reloadUser();
+        toast.success("Signed in with Google successfully!");
+        
+        const from = location.state?.from || "/";
+        navigate(from, { replace: true });
+      } else {
+        setError(data?.error || "Google sign-in failed. Please try again.");
+        toast.error("Sign-in failed.");
       }
-    };
-
-    window.addEventListener("message", messageListener);
+    } catch (err) {
+      console.error("Firebase popup failed", err);
+      setError(err.message || "Google sign-in failed. Please try again.");
+      toast.error("Sign-in failed.");
+    }
   };
 
   return (

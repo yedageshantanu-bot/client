@@ -2,7 +2,7 @@ import React from "react";
 import { Instagram, Heart } from "lucide-react";
 
 const shots = [
-  { src: "https://images.unsplash.com/photo-1549007994-cb92ca817bc7?auto=format&fit=crop&w=500&q=80" },
+  { src: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=500&q=80" },
   { src: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=500&q=80" },
   { src: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" },
   { src: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=500&q=80" },
