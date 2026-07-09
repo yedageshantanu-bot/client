@@ -87,7 +87,7 @@ export default function FeaturedProducts() {
                 <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
                   ✦ Adorable Toys Collection
                 </h3>
-                <Link to="/shop/toys" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                <Link to="/shop/toys" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition shrink-0 whitespace-nowrap">
                   View All Toys →
                 </Link>
               </div>
@@ -104,7 +104,7 @@ export default function FeaturedProducts() {
                 <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
                   ✦ Sparkling Jewelry Collection
                 </h3>
-                <Link to="/shop/jewelry" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                <Link to="/shop/jewelry" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition shrink-0 whitespace-nowrap">
                   View All Jewelry →
                 </Link>
               </div>
@@ -121,7 +121,7 @@ export default function FeaturedProducts() {
                 <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
                   ✦ Fresh Flowers Collection
                 </h3>
-                <Link to="/shop/flowers" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                <Link to="/shop/flowers" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition shrink-0 whitespace-nowrap">
                   View All Flowers →
                 </Link>
               </div>

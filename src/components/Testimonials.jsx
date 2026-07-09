@@ -3,25 +3,25 @@ import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const REVIEWS = [
   {
-    couple: "Ananya S., for her mom",
+    couple: "Ananya Sharma, for her mom",
     location: "Delhi ↔ Jaipur",
-    text: "Sent the Twin Hearts necklace to my mother on her birthday. She wore it to a family dinner and hasn’t taken it off since. Wrapped like a dream.",
-    img: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80",
-    gift: "Twin Hearts Necklace — Silver",
+    text: "Sent the Twin Hearts Interlocking Pendant to my mother on her birthday. She wore it to a family dinner and hasn't taken it off since. Wrapped like a dream.",
+    img: "/jewelley/IMG_3611.JPG.jpeg",
+    gift: "Twin Hearts Interlocking Pendant",
   },
   {
-    couple: "Rohit K., for himself",
+    couple: "Rohit Kumar",
     location: "Bengaluru",
-    text: "Bought the Cloud Bear for me, no shame. The lavender is prettier in person and the box it came in was gift-worthy on its own.",
-    img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=900&q=80",
-    gift: "Cloud Bear — Lavender Edition",
+    text: "Bought the Calming Lavender Plush Bear for myself, no shame. The lavender scent is very soothing and the plush toy is extremely soft.",
+    img: "/toys/IMG_2867.JPG.jpeg",
+    gift: "Calming Lavender Plush Bear",
   },
   {
     couple: "Suresh & Meena",
     location: "Mumbai ↔ Pune",
-    text: "The blush roses arrived by evening. Anniversary saved. My wife messaged our whole group, cold-chain fresh, hand-tied ribbon, all of it.",
-    img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=80",
-    gift: "Blush Rose Bouquet — 24 Stems",
+    text: "The Crimson Velvet Rose Bouquet arrived by evening. Anniversary saved! My wife messaged our whole group. Fresh, beautiful, and wonderful presentation.",
+    img: "/flowers/IMG_3520.JPG.jpeg",
+    gift: "Crimson Velvet Rose Bouquet",
   },
 ];
 

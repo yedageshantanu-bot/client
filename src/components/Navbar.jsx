@@ -24,9 +24,9 @@ export default function Navbar() {
       className="fixed top-0 inset-x-0 z-50 bg-[#FCF9F3] border-b border-[#E8DFD0] transition-all duration-300 shadow-sm"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-3 flex items-center justify-between gap-4">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-3 group">
+        <Link to="/" data-testid="nav-logo" className="flex items-center gap-3 group shrink-0">
           <img src="/logo.png" alt="ALAIRA HOUSE Logo" className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover group-hover:scale-105 transition duration-300 shadow-md border border-[#E8DFD0]" />
-          <span className="font-display font-bold tracking-wide text-lg md:text-2xl text-[#1C1924] select-none">
+          <span className="font-display font-bold tracking-wide text-lg md:text-2xl text-[#1C1924] select-none whitespace-nowrap">
             ALAIRA <span className="text-[#C4A55A] font-semibold italic font-serif-italic">HOUSE</span>
           </span>
         </Link>
