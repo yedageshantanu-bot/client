@@ -48,7 +48,7 @@ export default function ProductCard({ product, testIdPrefix = "product" }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
 
         {/* Badge Overlays */}
-        <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
+        <div className="absolute top-3 left-3 flex flex-col items-start gap-1 z-10">
           {badge && (
             <span className="bg-[#1C1924] text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-sm font-body">
               {badge}
@@ -99,7 +99,7 @@ export default function ProductCard({ product, testIdPrefix = "product" }) {
         </div>
 
         {/* Bottom Ratings + Price Row */}
-        <div className="mt-3.5 pt-3 border-t border-[#EEE7FA]/60 flex items-center justify-between">
+        <div className="mt-3.5 pt-3 border-t border-[#EEE7FA]/60 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-1 text-[12.5px] font-semibold text-[#1C1924] font-body">
             <Star size={13} className="fill-[#E5497C] text-[#E5497C]" />
             <span>{product.rating.toFixed(1)}</span>
