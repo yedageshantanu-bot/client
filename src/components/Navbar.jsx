@@ -79,6 +79,14 @@ export default function Navbar() {
                   >
                     <User size={14} /> My Profile
                   </Link>
+                  {(user.role === "admin" || user.email?.toLowerCase() === "yedageshantanu@gmail.com") && (
+                    <Link
+                      to="/admin"
+                      className="flex items-center gap-2 w-full text-left px-3 py-2 text-[13px] text-gold hover:bg-[#F4F0FF] rounded-xl transition font-semibold mb-1"
+                    >
+                      <User size={14} className="text-gold" /> Admin Panel
+                    </Link>
+                  )}
                   <button
                     data-testid="logout-button"
                     onClick={logout}
@@ -154,6 +162,15 @@ export default function Navbar() {
                   <p className="font-semibold text-[#1C1924]">{user.name}</p>
                   <p className="text-[12px] text-[#8b8790]">{user.email}</p>
                 </div>
+                {(user.role === "admin" || user.email?.toLowerCase() === "yedageshantanu@gmail.com") && (
+                  <NavLink
+                    to="/admin"
+                    onClick={() => setOpen(false)}
+                    className="py-3 px-3 rounded-xl text-gold hover:bg-gold/5 text-[15px] font-semibold flex items-center gap-2"
+                  >
+                    Admin Panel
+                  </NavLink>
+                )}
                 <button
                   data-testid="logout-button"
                   onClick={() => { setOpen(false); logout(); }}

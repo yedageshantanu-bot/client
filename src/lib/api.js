@@ -163,3 +163,15 @@ export const loginWithFirebaseToken = (idToken) =>
     return r.data;
   });
 
+// Admin Panel endpoints
+export const getAdminStats = () => api.get("/admin/stats").then((r) => r.data);
+export const getAdminOrders = () => api.get("/orders").then((r) => r.data.orders || r.data);
+export const updateOrderStatus = (id, deliveryStatus) => api.patch(`/orders/${id}/status`, { deliveryStatus }).then((r) => r.data);
+export const getCoupons = () => api.get("/coupons").then((r) => r.data.coupons || r.data);
+export const createCoupon = (payload) => api.post("/coupons", payload).then((r) => r.data);
+export const deleteCoupon = (id) => api.delete(`/coupons/${id}`).then((r) => r.data);
+export const createProduct = (payload) => api.post("/products", payload).then((r) => r.data);
+export const updateProduct = (id, payload) => api.put(`/products/${id}`, payload).then((r) => r.data);
+export const deleteProduct = (id) => api.delete(`/products/${id}`).then((r) => r.data);
+
+

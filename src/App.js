@@ -14,6 +14,7 @@ import Login from "@/pages/Login";
 import About from "@/pages/About";
 import Profile from "@/pages/Profile";
 import Contact from "@/pages/Contact";
+import Admin from "@/pages/Admin";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -39,6 +40,7 @@ function App() {
               <Route path="/register" element={<Login mode="register" />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="/order/:orderNumber" element={<OrderSuccess />} />
             </Routes>
             <Footer />
