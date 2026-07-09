@@ -79,6 +79,59 @@ export default function FeaturedProducts() {
               <div key={i} className="aspect-[4/5] skeleton rounded-[24px] bg-gray-200 animate-pulse" />
             ))}
           </div>
+        ) : activeCategory === "All" ? (
+          <div className="space-y-16 text-left">
+            {/* Toys Row */}
+            <div>
+              <div className="flex items-center justify-between mb-6 border-b border-[#EEE7FA] pb-3">
+                <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
+                  ✦ Adorable Toys Collection
+                </h3>
+                <Link to="/shop/toys" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                  View All Toys →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+                {products.filter(p => p.category?.toLowerCase() === "toys").slice(0, 4).map((p) => (
+                  <ProductCard key={p.id} product={p} testIdPrefix="featured-product" />
+                ))}
+              </div>
+            </div>
+
+            {/* Jewelry Row */}
+            <div>
+              <div className="flex items-center justify-between mb-6 border-b border-[#EEE7FA] pb-3">
+                <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
+                  ✦ Sparkling Jewelry Collection
+                </h3>
+                <Link to="/shop/jewelry" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                  View All Jewelry →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+                {products.filter(p => p.category?.toLowerCase() === "jewelry" || p.category?.toLowerCase() === "jewelley").slice(0, 4).map((p) => (
+                  <ProductCard key={p.id} product={p} testIdPrefix="featured-product" />
+                ))}
+              </div>
+            </div>
+
+            {/* Flowers Row */}
+            <div>
+              <div className="flex items-center justify-between mb-6 border-b border-[#EEE7FA] pb-3">
+                <h3 className="font-display font-bold text-[#1C1924] text-xl md:text-2xl tracking-wide">
+                  ✦ Fresh Flowers Collection
+                </h3>
+                <Link to="/shop/flowers" className="text-[13px] font-bold text-gold hover:text-[#E5497C] transition">
+                  View All Flowers →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+                {products.filter(p => p.category?.toLowerCase() === "flowers").slice(0, 4).map((p) => (
+                  <ProductCard key={p.id} product={p} testIdPrefix="featured-product" />
+                ))}
+              </div>
+            </div>
+          </div>
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
             {filteredProducts.map((p) => (
@@ -90,6 +143,7 @@ export default function FeaturedProducts() {
             No products found in this category.
           </div>
         )}
+
 
         <div className="mt-12">
           <Link

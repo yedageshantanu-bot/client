@@ -18,7 +18,7 @@ export default function InstagramGrid() {
         {/* Centered Heading Block */}
         <div className="mb-10 max-w-xl mx-auto">
           <p className="text-[12px] uppercase tracking-widest font-bold text-gold font-body">
-            @alairahouse
+            @alairaluxe
           </p>
           <h2 className="mt-2 font-display font-semibold text-[#1C1924] text-3xl md:text-5xl tracking-tight">
             Follow Our Journey
@@ -39,7 +39,9 @@ export default function InstagramGrid() {
             <a
               key={i}
               data-testid={`ig-shot-${i}`}
-              href="#"
+              href="https://www.instagram.com/alairaluxe?igsh=cnJ6anh4cXExMHRp"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative rounded-[20px] overflow-hidden aspect-square bg-[#FFF4F7] border border-[#EEE7FA]"
             >
               <img
@@ -51,7 +53,7 @@ export default function InstagramGrid() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
               <div className="absolute inset-x-3 bottom-3 flex items-center justify-between opacity-0 group-hover:opacity-100 transition">
                 <span className="text-white text-[11px] font-semibold flex items-center gap-1">
-                  <Instagram size={11} /> @alairahouse
+                  <Instagram size={11} /> @alairaluxe
                 </span>
                 <span className="text-white text-[11px] font-semibold flex items-center gap-1">
                   <Heart size={11} className="fill-white" /> {132 + i * 27}
@@ -64,10 +66,12 @@ export default function InstagramGrid() {
         {/* Centered Follow us button at the bottom */}
         <div className="mt-8">
           <a
-            href="#"
+            href="https://www.instagram.com/alairaluxe?igsh=cnJ6anh4cXExMHRp"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#1C1924] border-b-2 border-[#1C1924] pb-0.5 hover:text-[#E5497C] hover:border-[#E5497C] transition duration-300"
           >
-            <Instagram size={15} /> Follow @alairahouse
+            <Instagram size={15} /> Follow @alairaluxe
           </a>
         </div>
 

@@ -9,6 +9,7 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/shop", label: "Shop" },
   { to: "/shop/flowers", label: "Combo" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -20,12 +21,14 @@ export default function Navbar() {
   return (
     <header
       data-testid="site-navbar"
-      className="fixed top-0 inset-x-0 z-50"
+      className="fixed top-0 inset-x-0 z-50 bg-[#FCF9F3] border-b border-[#E8DFD0] transition-all duration-300 shadow-sm"
     >
-      <div className="mx-4 md:mx-8 mt-4 glass-card rounded-full px-5 md:px-7 py-3 flex items-center justify-between gap-4">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-2 group">
-          <span className="w-9 h-9 rounded-full grid place-items-center bg-[#1C1924] text-white font-display font-semibold group-hover:scale-105 transition">A</span>
-          <span className="font-display font-semibold tracking-tight text-[15px] md:text-[16px] text-[#1C1924]">ALAIRA HOUSE</span>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-3 flex items-center justify-between gap-4">
+        <Link to="/" data-testid="nav-logo" className="flex items-center gap-3 group">
+          <img src="/logo.png" alt="ALAIRA HOUSE Logo" className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover group-hover:scale-105 transition duration-300 shadow-md border border-[#E8DFD0]" />
+          <span className="font-display font-bold tracking-wide text-lg md:text-2xl text-[#1C1924] select-none">
+            ALAIRA <span className="text-[#C4A55A] font-semibold italic font-serif-italic">HOUSE</span>
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -131,15 +134,15 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div data-testid="mobile-menu" className="mx-4 mt-2 glass-card rounded-3xl p-4 md:hidden">
-          <div className="flex flex-col">
+        <div data-testid="mobile-menu" className="md:hidden border-t border-[#E8DFD0] bg-[#FCF9F3] px-6 py-4">
+          <div className="flex flex-col gap-1">
             {links.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
                 data-testid={`mobile-nav-link-${l.label.toLowerCase()}`}
-                className="py-3 px-3 rounded-xl text-[#1C1924] hover:bg-white text-[15px] font-medium"
+                className="py-3 px-4 rounded-xl text-[#1C1924] hover:bg-[#1C1924]/5 text-[15px] font-medium transition"
                 end
               >
                 {l.label}

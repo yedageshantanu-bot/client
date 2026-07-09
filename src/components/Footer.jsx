@@ -13,15 +13,17 @@ export default function Footer() {
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full grid place-items-center bg-[#1C1924] text-white font-display font-semibold">A</span>
-              <span className="font-display font-semibold text-[#1C1924] text-lg tracking-wide">ALAIRA HOUSE</span>
+              <img src="/logo.png" alt="ALAIRA HOUSE Logo" className="w-12 h-12 rounded-full object-cover shadow-sm border border-[#E8DFD0]" />
+              <span className="font-display font-bold text-[#1C1924] text-xl tracking-wide">
+                ALAIRA <span className="text-[#C4A55A] font-semibold italic font-serif-italic">HOUSE</span>
+              </span>
             </div>
             <p className="text-[13.5px] text-[#4A4652] max-w-sm leading-relaxed font-body">
               Thoughtful, hand-curated gifts for the couples who love across cities, countries, and time zones. Every parcel is love, delivered.
             </p>
             <div className="flex items-center gap-2.5 pt-2">
               {[
-                { Icon: Instagram, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/alairaluxe?igsh=cnJ6anh4cXExMHRp" },
                 { Icon: Twitter, href: "#" },
                 { Icon: Facebook, href: "#" },
                 { Icon: Youtube, href: "#" }
@@ -49,7 +51,7 @@ export default function Footer() {
               <li><Link to="/shop" className="hover:text-[#E5497C] transition">Shop Gifts</Link></li>
               <li><Link to="/about" className="hover:text-[#E5497C] transition">About Us</Link></li>
               <li><Link to="/profile" className="hover:text-[#E5497C] transition">My Account</Link></li>
-              <li><a href="#" className="hover:text-[#E5497C] transition">Contact</a></li>
+              <li><Link to="/contact" className="hover:text-[#E5497C] transition">Contact</Link></li>
             </ul>
           </div>
 
@@ -80,13 +82,13 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail size={14} className="text-[#C4A55A] shrink-0" />
-                <a href="mailto:hello@alairahouse.com" className="hover:text-[#E5497C] transition">
-                  hello@alairahouse.com
+                <a href="mailto:alairamaison@gmail.com" className="hover:text-[#E5497C] transition">
+                  alairamaison@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Instagram size={14} className="text-[#C4A55A] shrink-0" />
-                <a href="#" className="hover:text-[#E5497C] transition">@alairahouse</a>
+                <a href="https://www.instagram.com/alairaluxe?igsh=cnJ6anh4cXExMHRp" target="_blank" rel="noopener noreferrer" className="hover:text-[#E5497C] transition">@alairaluxe</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Clock size={14} className="text-[#C4A55A] shrink-0" />
