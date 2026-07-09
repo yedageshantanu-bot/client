@@ -1,0 +1,55 @@
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\ADMIN\OneDrive\Desktop\e-comerce\client\.next\dev\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\ADMIN\OneDrive\Desktop\e-comerce\client\.next\dev\cache\webpack\client-development\0.pack.gz'
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Cannot update a component (`Fe`) while rendering a different component (`StoreProvider`). To locate the bad setState() call inside `StoreProvider`, follow the stack trace as described in https://react.dev/link/setstate-in-render 
+    at StoreProvider.useCallback[toggleWishlist] (context\StoreContext.tsx:461:15)
+    at StoreProvider (context\StoreContext.tsx:129:43)
+  459 |         }
+  460 |
+> 461 |         toast.success(items.includes(productId) ? "Removed from wishlist" : "Saved to wis...
+      |               ^
+  462 |
+  463 |         return nextWishlist;
+  464 |       }); (context\StoreContext.tsx:461:15)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] [Alaira coupons] save failed Error: Coupon validation failed: applicableProducts.0: Cast to [ObjectId] failed for value "[\n  'p1', 'p3', 'p5',\n  'p7', 'p9', 'p10',\n  'p8', 'p6', 'p4',\n  'p2'\n]" (type string) at path "applicableProducts.0" because of "CastError"
+    at parseCouponResponse (lib\couponApi.ts:18:11)
+    at async StoreProvider.useCallback[addCoupon] (context\StoreContext.tsx:330:25)
+    at async submit (components\admin\AdminCoupons.tsx:74:9)
+  16 |
+  17 |   if (!response.ok) {
+> 18 |     throw new Error(payload?.message || payload?.error || "Coupon request failed");
+     |           ^
+  19 |   }
+  20 |
+  21 |   return payload as T; (components\admin\AdminCoupons.tsx:81:15)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.

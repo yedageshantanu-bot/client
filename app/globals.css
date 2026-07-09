@@ -1,0 +1,893 @@
+@import "tailwindcss";
+
+:root {
+  --color-maroon: #FF758F;       /* Romantic Soft Pink */
+  --color-maroon-2: #FF4D6D;     /* Active Deep Pink */
+  --color-ivory: #FFF0F2;        /* Softest Pastel Pink Background */
+  --color-ivory-2: #EAF5FF;      /* Softest Pastel Blue Background */
+  --color-ivory-3: #FFFFFF;      /* Clean White */
+  --color-beige: #D8E6FF;        /* Light Pastel Blue */
+  --color-gold: #79A1EB;         /* Aesthetic Sky/Boy Blue */
+  --color-gold-soft: #A8C5F5;    /* Soft Pastel Blue Accent */
+  --color-gold-dark: #5E84C9;    /* Darker Denim/Slate Accent */
+  --color-brown: #1C1924;        /* Deep Charcoal Text */
+  --color-dark-red: #FFC0CB;     /* Pale Blushing Pink */
+  --color-oxblood: #1C1924;      /* Charcoal Text */
+  --color-charcoal: #1C1924;     /* Deep Charcoal Text */
+  --font-display: var(--font-display), "Sora", sans-serif;
+  --font-body: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  --font-cursive: var(--font-cursive), "Caveat", cursive;
+  --font-serif: var(--font-serif), "Cormorant Garamond", serif;
+  --font-button: var(--font-display), sans-serif;
+}
+
+@theme {
+  --color-background: #F5F9FD;
+  --color-foreground: #1C1924;
+  --color-ink: #1C1924;
+  --color-gold: #79A1EB;
+  --color-gold-light: #A8C5F5;
+  --color-gold-dark: #5E84C9;
+  --color-beige: #EAF5FF;
+  --color-beige-soft: #FFF0F2;
+  --color-brand-muted: #6B7280;
+  --color-brand-border: rgba(255, 117, 143, 0.15);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-cursive: var(--font-cursive);
+  --font-serif: var(--font-serif);
+  --font-button: var(--font-button);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 117, 143, 0.1), transparent 28rem),
+    radial-gradient(circle at 88% 90%, rgba(121, 161, 235, 0.1), transparent 28rem),
+    linear-gradient(180deg, #FFFFFF 0%, var(--color-ivory) 40%, var(--color-ivory-2) 100%);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-oxblood);
+}
+
+.container-page {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1rem;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  /* Hide everything */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the invoice content and its children */
+  #invoice-content,
+  #invoice-content * {
+    visibility: visible;
+  }
+
+  #invoice-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  /* Reset background for print */
+  body {
+    background: white !important;
+  }
+}
+
+.no-print {
+  /* Utility class to hide elements from print */
+}
+
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+/* ---------- Price glyph fix ----------
+   Inter / Playfair can render the Indian rupee sign ₹ with a slightly
+   raised or left-leaning bearing that gets clipped by tight line-height
+   or negative letter-spacing. The formatter in lib/utils.ts now outputs
+   a literal "₹ " + digits, and these utility classes make the
+   glyph stable anywhere it appears. */
+.price {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-language-override: "HIN" 0;
+  white-space: nowrap;
+  letter-spacing: 0;
+  padding-left: 0.05em;
+}
+.price-lg {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  white-space: nowrap;
+  letter-spacing: 0;
+  padding-left: 0.06em;
+}
+
+.gold-underline::after {
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  bottom: -0.65rem;
+  content: "";
+  height: 1px;
+  left: 10%;
+  position: absolute;
+  width: 80%;
+}
+
+.botanical-line {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+
+.marquee-track {
+  animation: marquee 24s linear infinite;
+}
+
+.gold-dust {
+  animation: goldDust var(--dust-speed, 7s) ease-in-out infinite;
+  animation-delay: var(--dust-delay, 0s);
+}
+
+.hero-banner-image {
+  animation: heroDrift 18s ease-in-out infinite alternate;
+  filter: saturate(1.05) contrast(1.04);
+}
+
+.hero-luxury {
+  isolation: isolate;
+}
+
+.hero-red-bg {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 117, 143, 0.22), transparent 28rem),
+    radial-gradient(circle at 82% 80%, rgba(121, 161, 235, 0.22), transparent 28rem),
+    linear-gradient(135deg, #FFF0F2 0%, #EDF5FF 100%);
+}
+
+.hero-red-bg::before {
+  background:
+    linear-gradient(90deg, rgba(255, 240, 242, 0.2), transparent 46%, rgba(237, 245, 255, 0.2)),
+    repeating-linear-gradient(115deg, rgba(255, 117, 143, 0.02) 0 1px, transparent 1px 2.6rem),
+    radial-gradient(circle at 50% 0%, rgba(255, 240, 242, 0.3), transparent 34rem);
+  content: "";
+  inset: 0;
+  opacity: 0.9;
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-red-bg::after {
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 0 60%, rgba(237, 245, 255, 0.1) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 240, 242, 0.3));
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-campaign-bg {
+  animation: heroCampaignDrift 22s ease-in-out infinite alternate;
+  filter: saturate(1.04) contrast(1.05) brightness(0.86);
+}
+
+.hero-particles {
+  background-image:
+    radial-gradient(circle, rgba(226, 189, 141, 0.34) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(248, 243, 235, 0.24) 0 1px, transparent 1.5px);
+  background-position:
+    0 0,
+    2.1rem 2.8rem;
+  background-size:
+    5.8rem 5.8rem,
+    7.4rem 7.4rem;
+  opacity: 0.22;
+  animation: heroParticleDrift 28s linear infinite;
+}
+
+.hero-shimmer {
+  background:
+    linear-gradient(112deg, transparent 0%, rgba(255, 248, 225, 0.12) 36%, transparent 52%),
+    radial-gradient(circle at 24% 22%, rgba(226, 189, 141, 0.18), transparent 22rem);
+  mix-blend-mode: screen;
+  opacity: 0.46;
+  animation: heroShimmer 8.5s ease-in-out infinite;
+}
+
+.mandala-accent {
+  border: 1px solid rgba(226, 189, 141, 0.2);
+  background:
+    repeating-conic-gradient(from 0deg, rgba(226, 189, 141, 0.18) 0deg 7deg, transparent 7deg 15deg),
+    radial-gradient(circle, transparent 0 34%, rgba(226, 189, 141, 0.12) 35% 36%, transparent 37% 54%, rgba(226, 189, 141, 0.1) 55% 56%, transparent 57%);
+  filter: blur(0.2px);
+  opacity: 0.22;
+  animation: mandalaBreathe 18s ease-in-out infinite;
+}
+
+.peacock-accent {
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(226, 189, 141, 0.16) 0 10%, transparent 11%),
+    repeating-conic-gradient(from 18deg, rgba(226, 189, 141, 0.12) 0deg 4deg, transparent 4deg 14deg);
+  opacity: 0.18;
+  transform: rotate(-18deg);
+  animation: peacockFanFloat 16s ease-in-out infinite;
+}
+
+.hero-corner {
+  height: clamp(5rem, 10vw, 9rem);
+  opacity: 0.34;
+  pointer-events: none;
+  position: absolute;
+  width: clamp(5rem, 10vw, 9rem);
+}
+
+.hero-corner::before,
+.hero-corner::after {
+  border-color: rgba(226, 189, 141, 0.72);
+  content: "";
+  position: absolute;
+}
+
+.hero-corner::before {
+  border-top-style: solid;
+  border-top-width: 1px;
+  height: 100%;
+  inset: 0;
+}
+
+.hero-corner::after {
+  border-left-style: solid;
+  border-left-width: 1px;
+  height: 100%;
+  inset: 0;
+}
+
+.hero-corner-left {
+  left: 1.5rem;
+  top: 6.5rem;
+}
+
+.hero-corner-right {
+  bottom: 4rem;
+  right: 1.5rem;
+  transform: rotate(180deg);
+}
+
+.hero-luxury-button:hover {
+  background: #5d0710;
+  box-shadow:
+    0 1.15rem 2.6rem rgba(38, 7, 11, 0.38),
+    0 0 1.4rem rgba(226, 189, 141, 0.25);
+  color: var(--color-ivory);
+  transform: translateY(-0.18rem);
+}
+
+.gold-border-sweep {
+  overflow: hidden;
+  position: relative;
+}
+
+.gold-border-sweep::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 235, 183, 0.86), transparent);
+  content: "";
+  height: 1px;
+  left: -65%;
+  position: absolute;
+  top: -1px;
+  width: 56%;
+  transition: left 0.58s ease;
+}
+
+.gold-border-sweep:hover::before {
+  left: 112%;
+}
+
+.hero-model-float {
+  animation: heroModelFloat 7.5s ease-in-out infinite;
+}
+
+.hero-artwork-parallax {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.luxury-floral {
+  animation: floralFloat 13s ease-in-out infinite;
+}
+
+.luxury-floral-reverse {
+  animation: floralFloatReverse 15s ease-in-out infinite;
+}
+
+.petal {
+  background: radial-gradient(circle at 35% 30%, rgba(255, 250, 243, 0.86), rgba(226, 189, 141, 0.45) 52%, transparent 70%);
+  border-radius: 70% 30% 65% 35%;
+  height: 0.78rem;
+  opacity: 0.28;
+  pointer-events: none;
+  position: absolute;
+  width: 1.15rem;
+}
+
+.petal-one {
+  animation: petalFloat 16s ease-in-out infinite;
+  left: 22%;
+  top: 26%;
+}
+
+.petal-two {
+  animation: petalFloat 19s ease-in-out 2s infinite;
+  left: 68%;
+  top: 34%;
+  transform: rotate(24deg);
+}
+
+.petal-three {
+  animation: petalFloat 21s ease-in-out 4s infinite;
+  left: 83%;
+  top: 70%;
+  transform: rotate(-18deg);
+}
+
+.alaira-pattern-bg {
+  background-color: var(--color-ivory);
+  background-image:
+    radial-gradient(circle at 16% 24%, rgba(212, 163, 115, 0.3), transparent 28rem),
+    radial-gradient(circle at 82% 14%, rgba(122, 0, 16, 0.12), transparent 26rem),
+    linear-gradient(115deg, #fffaf3 0%, #f8f3eb 42%, #eadbcc 100%),
+    radial-gradient(circle, rgba(59, 42, 40, 0.06) 0 1px, transparent 1.4px);
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0.65rem 0.8rem;
+  background-size:
+    auto,
+    auto,
+    auto,
+    4.4rem 4.4rem;
+}
+
+.alaira-pattern-bg::before {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(59, 42, 40, 0.035) 0,
+      rgba(59, 42, 40, 0.035) 1px,
+      transparent 1px,
+      transparent 2.2rem
+    ),
+    radial-gradient(circle at 50% 0%, rgba(212, 163, 115, 0.18), transparent 42%);
+  content: "";
+  inset: 0;
+  opacity: 0.62;
+  pointer-events: none;
+  position: absolute;
+}
+
+.alaira-hero-bg {
+  background:
+    radial-gradient(circle at 80% 24%, rgba(255, 117, 143, 0.18), transparent 22rem),
+    radial-gradient(circle at 24% 28%, rgba(121, 161, 235, 0.18), transparent 26rem),
+    linear-gradient(180deg, #FFF0F2 0%, #EDF5FF 100%);
+}
+
+.alaira-hero-bg::before {
+  background:
+    linear-gradient(90deg, rgba(255, 240, 242, 0.15), transparent 44%, rgba(237, 245, 255, 0.15)),
+    radial-gradient(circle at 50% 106%, #EDF5FF, transparent 26%),
+    radial-gradient(circle, rgba(255, 117, 143, 0.05) 0 1px, transparent 1.5px);
+  background-size: auto, auto, 4.25rem 4.25rem;
+  content: "";
+  inset: 0;
+  opacity: 0.84;
+  pointer-events: none;
+  position: absolute;
+}
+
+.alaira-hero-bg::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 240, 242, 0.34) 76%, var(--color-ivory) 100%);
+  bottom: 0;
+  content: "";
+  height: 18rem;
+  inset-inline: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-image-blend {
+  -webkit-mask-image:
+    radial-gradient(ellipse at 54% 45%, #000 54%, rgba(0, 0, 0, 0.84) 68%, transparent 88%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse at 54% 45%, #000 54%, rgba(0, 0, 0, 0.84) 68%, transparent 88%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.section-soft-rise {
+  background: linear-gradient(180deg, transparent 0%, rgba(248, 243, 235, 0.92) 24%, var(--color-ivory) 100%);
+}
+
+.luxury-panel {
+  border: 1px solid rgba(122, 0, 16, 0.12);
+  background: rgba(255, 250, 243, 0.72);
+  box-shadow: 0 1.6rem 4rem rgba(59, 42, 40, 0.08);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes goldDust {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: translate3d(0.75rem, -1.5rem, 0) scale(1.4);
+  }
+}
+
+@keyframes heroDrift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.07) translate3d(-1.2rem, -0.4rem, 0);
+  }
+}
+
+@keyframes heroCampaignDrift {
+  from {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.045) translate3d(-0.65rem, -0.35rem, 0);
+  }
+}
+
+@keyframes heroParticleDrift {
+  from {
+    background-position:
+      0 0,
+      2.1rem 2.8rem;
+  }
+  to {
+    background-position:
+      5.8rem 5.8rem,
+      9.5rem 10.2rem;
+  }
+}
+
+@keyframes heroShimmer {
+  0%,
+  100% {
+    transform: translate3d(-1.5rem, 0, 0);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate3d(1.5rem, 0, 0);
+    opacity: 0.52;
+  }
+}
+
+@keyframes mandalaBreathe {
+  0%,
+  100% {
+    transform: scale(0.96) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.04) rotate(8deg);
+  }
+}
+
+@keyframes peacockFanFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-18deg);
+  }
+  50% {
+    transform: translate3d(-0.8rem, -0.7rem, 0) rotate(-13deg);
+  }
+}
+
+@keyframes heroModelFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.9rem, 0);
+  }
+}
+
+@keyframes floralFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0.8rem, -1rem, 0) rotate(2deg);
+  }
+}
+
+@keyframes floralFloatReverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(180deg);
+  }
+  50% {
+    transform: translate3d(-0.8rem, 1rem, 0) rotate(177deg);
+  }
+}
+
+@keyframes petalFloat {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    opacity: 0.34;
+    transform: translate3d(1.2rem, 2.4rem, 0) rotate(18deg);
+  }
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-dust,
+  .hero-banner-image,
+  .hero-campaign-bg,
+  .hero-particles,
+  .hero-shimmer,
+  .hero-model-float,
+  .luxury-floral,
+  .luxury-floral-reverse,
+  .mandala-accent,
+  .peacock-accent,
+  .petal {
+    animation: none;
+  }
+}
+
+/* ---------- Admin console: unified design system ---------- */
+.admin-shell,
+.admin-shell * {
+  font-family: var(--font-body) !important;
+}
+
+.admin-shell {
+  /* Single source of truth — luxury fashion SaaS palette */
+  --primary: #08142E;                /* deep navy — every highlight */
+  --primary-hover: #0f2042;
+  --primary-soft: #0f172a;           /* hover state for primary */
+  --on-primary: #ffffff;             /* text on primary */
+  --bg: #ffffff;                     /* page background */
+  --surface: #ffffff;                /* card surface */
+  --surface-2: #f8fafc;              /* soft surface */
+  --surface-3: #f1f5f9;              /* stronger surface */
+  --text: #0f172a;                   /* primary text */
+  --text-2: #475569;                 /* body text */
+  --muted: #64748b;                  /* muted text */
+  --muted-2: #94a3b8;                /* subtle text */
+  --border: #e2e8f0;                 /* standard border */
+  --border-2: #cbd5e1;               /* emphasized border */
+  --hover: #f8fafc;                  /* hover bg on light */
+  --ring: rgba(8, 20, 46, 0.12);
+
+  /* Sidebar (dark luxury) */
+  --sidebar-bg: #000000;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.7);
+  --sidebar-text-subtle: rgba(255, 255, 255, 0.5);
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-active: #08142E;          /* navy active pill */
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Headings keep display font, but use neutral ink */
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.admin-shell .premium-gradient {
+  background: linear-gradient(135deg, #0a0a0a 0%, #18181b 60%, #27272a 100%);
+  color: #fafafa;
+}
+
+.admin-shell .gold-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 10, 10, 0.12) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+/* Enterprise component classes */
+.admin-shell .premium-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(10, 10, 10, 0.04),
+    0 1px 3px rgba(10, 10, 10, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.admin-shell .premium-card:hover {
+  border-color: var(--admin-border-2);
+  box-shadow:
+    0 4px 12px rgba(10, 10, 10, 0.06),
+    0 2px 4px rgba(10, 10, 10, 0.04);
+}
+
+.admin-shell .premium-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  padding: 0.25rem 0.625rem;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--admin-text-2);
+  letter-spacing: 0.01em;
+}
+
+.admin-shell .premium-pill-dark {
+  background: var(--admin-ink);
+  color: #fafafa;
+  border-color: var(--admin-ink);
+}
+
+.admin-shell .premium-pill-muted {
+  background: var(--admin-surface-3);
+  color: var(--admin-muted);
+  border-color: var(--admin-border);
+}
+
+.admin-shell .premium-input {
+  height: 40px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  padding: 0 14px;
+  font-size: 13px;
+  color: var(--admin-text);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-shell .premium-input::placeholder {
+  color: var(--admin-muted-2);
+}
+
+.admin-shell .premium-input:focus {
+  border-color: var(--admin-ink);
+  box-shadow: 0 0 0 4px var(--admin-ring);
+}
+
+.admin-shell .premium-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 38px;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+
+.admin-shell .premium-btn:hover {
+  background: var(--admin-hover);
+  border-color: var(--admin-border-2);
+}
+
+.admin-shell .premium-btn-primary {
+  background: var(--admin-ink);
+  color: #fafafa;
+  border-color: var(--admin-ink);
+}
+
+.admin-shell .premium-btn-primary:hover {
+  background: #27272a;
+  border-color: #27272a;
+  color: #fafafa;
+}
+
+.admin-shell .premium-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--admin-muted);
+}
+
+.admin-shell .premium-btn-ghost:hover {
+  background: var(--admin-hover);
+  color: var(--admin-text);
+}
+
+.admin-shell .premium-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+.admin-shell .premium-table thead th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  white-space: nowrap;
+}
+
+.admin-shell .premium-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  vertical-align: middle;
+}
+
+.admin-shell .premium-table tbody tr:hover {
+  background: var(--admin-surface-2);
+}
+
+.admin-shell .premium-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-shell .premium-stat {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-shell .premium-stat:hover {
+  border-color: var(--admin-border-2);
+  box-shadow: 0 4px 16px rgba(10, 10, 10, 0.05);
+}
+
+.admin-shell .premium-divider {
+  height: 1px;
+  background: var(--admin-border);
+  border: none;
+  margin: 0;
+}
+
+.admin-shell .custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.admin-shell .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-shell .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--admin-border-2);
+  border-radius: 999px;
+}
+.admin-shell .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-muted-2);
+}
+
+/* Dark sidebar scrollbar — subtle on the pure-black sidebar */
+.admin-shell .sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.admin-shell .sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-shell .sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+.admin-shell .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.admin-shell .sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}

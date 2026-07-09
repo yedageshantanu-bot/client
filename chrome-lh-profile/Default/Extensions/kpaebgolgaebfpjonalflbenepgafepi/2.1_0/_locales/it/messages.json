@@ -1,0 +1,47 @@
+{
+   "app_access_block_msg": {
+      "message": "L'accesso al sito web è bloccato per la tua protezione."
+   },
+   "app_access_category_block_msg": {
+      "message": "L'accesso al sito web è bloccato."
+   },
+   "app_browsing_block_msg": {
+      "message": "Il sito web che stai visitando potrebbe essere dannoso."
+   },
+   "app_browsing_protection": {
+      "message": "Browsing Protection"
+   },
+   "app_category": {
+      "message": "Categoria"
+   },
+   "app_contact_parent": {
+      "message": "Se ritieni che si tratti di un errore, contatta i tuoi genitori per ottenere il permesso di visitare la pagina web."
+   },
+   "app_contact_report": {
+      "message": "Se ritieni che si tratti di un errore, clicca qui per segnalarlo."
+   },
+   "app_ext_desc": {
+      "message": "Quick Heal Web Protection protegge l'utente da siti web dannosi, di phishing e indesiderati."
+   },
+   "app_name": {
+      "message": "Quick Heal Web Protection"
+   },
+   "app_parental_control": {
+      "message": "Smart Parenting"
+   },
+   "app_pc_block_msg": {
+      "message": "Stai visitando un sito web che appartiene a una categoria ristretta."
+   },
+   "app_prod_desc": {
+      "message": "Quick Heal"
+   },
+   "app_scam_block_msg": {
+      "message": "Stai visitando un sito web fraudolento."
+   },
+   "app_scam_protection": {
+      "message": "Scam Protection"
+   },
+   "app_website": {
+      "message": "Sito Web"
+   }
+}

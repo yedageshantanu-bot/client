@@ -1,0 +1,47 @@
+{
+   "app_access_block_msg": {
+      "message": "사용자 보호를 위해 해당 웹사이트 접속이 차단되었습니다."
+   },
+   "app_access_category_block_msg": {
+      "message": "웹사이트 접근이 차단되었습니다."
+   },
+   "app_browsing_block_msg": {
+      "message": "접속하려는 웹사이트는 유해할 수 있습니다."
+   },
+   "app_browsing_protection": {
+      "message": "브라우징 보호"
+   },
+   "app_category": {
+      "message": "카테고리"
+   },
+   "app_contact_parent": {
+      "message": "이것이 오탐지라고 생각되시면, 부모님께 연락하여 웹페이지 방문을 허용받으세요."
+   },
+   "app_contact_report": {
+      "message": "이것이 오탐지라고 생각되시면, 신고하려면 여기를 클릭하세요."
+   },
+   "app_ext_desc": {
+      "message": "Quick Heal 웹 보호는 악성, 피싱 및 원치 않는 웹사이트로부터 사용자를 보호합니다."
+   },
+   "app_name": {
+      "message": "Quick Heal 웹 보호"
+   },
+   "app_parental_control": {
+      "message": "스마트 자녀보호"
+   },
+   "app_pc_block_msg": {
+      "message": "제한된 카테고리의 웹사이트에 접속하려고 합니다."
+   },
+   "app_prod_desc": {
+      "message": "Quick Heal"
+   },
+   "app_scam_block_msg": {
+      "message": "사기성 웹사이트에 접속하려고 합니다."
+   },
+   "app_scam_protection": {
+      "message": "스캠 보호"
+   },
+   "app_website": {
+      "message": "웹사이트"
+   }
+}
